@@ -1,4 +1,3 @@
-import './index.css';
 type TypeItGptOptions = {
     messageContainer?: HTMLElement | null;
     timings: {
