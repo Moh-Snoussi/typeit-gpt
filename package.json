@@ -1,0 +1,37 @@
+{
+	"name": "typeit-gpt",
+	"type": "module",
+	"version": "1.0.0",
+	"description": "TypeIt is a JavaScript/TypeScript library that allows you to type out strings char by char. It's lightweight, customizable, and easy to use.",
+	"main": "lib/TypeItGpt.js",
+	"scripts": {
+		"build" : "tsc"
+	},
+	"repository": {
+		"url": "https://github.com/Moh-Snoussi/keyboard-event-key-type"
+	},
+	"keywords": [
+		"type",
+		"typing",
+		"typing effect",
+		"typing animation",
+		"typing library",
+		"typing javascript",
+		"typing typescript",
+		"typing effect javascript",
+		"typing effect typescript",
+		"typing animation javascript",
+		"typing animation typescript",
+		"typing library javascript",
+		"typing library typescript",
+		"javascript typing",
+		"typescript typing",
+		"javascript typing effect",
+		"typescript typing effect"
+	],
+	"author": "Mohamed Snoussi",
+	"license": "ISC",
+	"devDependencies": {
+		"typescript": "*"
+	}
+}
