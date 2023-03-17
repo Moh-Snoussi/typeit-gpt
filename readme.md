@@ -5,7 +5,7 @@ A simple library to type a message char by char, with a blinking cursor.
 ## Installation
 
 ```bash
-npm install typeit
+npm install typeit-gpt --save
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ TypeCursor.typeCursor( 'Hello World' );
 // with options
 TypeCursor.typeCursor('Hello World', options);
 
-``` 
+```
 # options
 
 | Option | Type | Default | Description |
