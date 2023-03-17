@@ -1,5 +1,3 @@
-import './index.css';
-
 type TypeItGptOptions = {
     // the element that will contain the message
     // default is document.getElementById( 'message-container' ) as HTMLElement
