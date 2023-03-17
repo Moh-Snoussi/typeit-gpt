@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
-		"target": "ES5",
-		"module": "CommonJS",
+		"target": "ES2015",
+		"module": "ES2020",
 		"strict": true,
 		"declaration": true,
 		"declarationMap": true,

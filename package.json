@@ -1,7 +1,7 @@
 {
 	"name": "typeit-gpt",
 	"type": "module",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "TypeIt is a JavaScript/TypeScript library that allows you to type out strings char by char. It's lightweight, customizable, and easy to use.",
 	"main": "lib/TypeItGpt.js",
 	"scripts": {
@@ -10,6 +10,7 @@
 	"repository": {
 		"url": "https://github.com/Moh-Snoussi/typeit-gpt.git"
 	},
+	"types": "lib/TypeItGpt.d.ts",
 	"keywords": [
 		"type",
 		"typing",
