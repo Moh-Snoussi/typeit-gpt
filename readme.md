@@ -8,11 +8,13 @@ A simple library to type a message char by char, with a blinking cursor, that lo
 
 ## Installation
 
+### NPM
+
 ```bash
 npm install typeit-gpt --save
 ```
 
-## cdn
+### CDN
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/typeit-gpt/src/index.css" />
