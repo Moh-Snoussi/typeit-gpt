@@ -15,13 +15,14 @@ type TypeItGptOptions = {
     startEmpty?: boolean;
     waitLongerChar: Array<string>;
     shouldType: (message: string) => boolean;
-    onType?: (char: string) => void;
+    onType?: (oldMessage: string, char: string) => void;
     onEnd?: () => void;
 };
 export declare const defaultOptions: TypeItGptOptions;
 export declare class TypeItGpt {
     stopTyping: boolean;
     options: TypeItGptOptions;
+    private message;
     constructor(userOptions?: {} | TypeItGptOptions);
     private static insts;
     static typeCursor(message: string, userOptions?: TypeItGptOptions): TypeItGpt;
@@ -35,6 +36,7 @@ export declare class TypeItGpt {
      *
      */
     typeCursor(message: string, startEmpty?: boolean, onEnd?: () => void): void;
+    clearMessage(): void;
     /**
      * Call this function to write all the message at ones and stop the typing,
      * this is useful if a new message needs to be typed
