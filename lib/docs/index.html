@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypeItGpt</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/typeit-gpt/src/index.css" />
+
+  </head>
+  <body>
+    <style>
+      * {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+
+        color: aliceblue;
+      }
+
+      input,
+      textarea {
+        background-color: #343541;
+        border: none;
+        color: aliceblue;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border-radius: 0.5rem;
+      }
+
+      button {
+        background-color: #343541;
+        border: none;
+        color: aliceblue;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border-radius: 0.5rem;
+        margin: 1rem;
+        padding: 1rem;
+      }
+
+      body {
+        background-color: #202123;
+      }
+    </style>
+
+    <div style="display: flex; align-items: center; flex-direction: column">
+      <h1>TypeItGpt</h1>
+      <p>Typing cursor that looks like GPT-3 answer style</p>
+
+      <p>
+        This simple light weight library allows you to add a typing cursor that
+        looks like GPT-3
+      </p>
+
+      <div
+        id="option-setter"
+        style="
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          max-width: 90vw;
+          flex-wrap: wrap;
+          justify-content: center;
+          text-align: center;
+        "
+      >
+        <div
+          class="input-container"
+          style="margin: 0.5rem; display: flex; flex-direction: column"
+        >
+          <label for="body">body</label>
+          <textarea type="text" id="body" style="width: 90vw" rows="5">
+If one were to question God for the problems we are facing on Earth, it is important to consider that we bear responsibility for our actions. While there is enough food to sustain all living beings on our planet, numerous factors such as poverty, inequality, conflict, and environmental degradation prevent this from being a reality. Therefore, it is incumbent upon us to take collective action towards social justice and sustainability in order to create a more equitable world for all.</textarea
+          >
+        </div>
+        <div
+          class="input-container"
+          style="margin: 0.5rem; display: flex; flex-direction: column"
+        >
+          <label for="background-color">background-color</label>
+          <input type="text" id="background-color" value="#343541" />
+        </div>
+
+        <div
+          class="input-container"
+          style="margin: 0.5rem; display: flex; flex-direction: column"
+        >
+          <label for="text-color">text-color</label>
+          <input type="text" id="text-color" value="white" />
+        </div>
+
+        <div
+          class="input-container"
+          style="margin: 0.5rem; display: flex; flex-direction: column"
+        >
+          <label for="cursor-width">cursor width</label>
+          <input type="text" id="cursor-width" value="0.75rem" />
+        </div>
+        <div
+          class="input-container"
+          style="margin: 0.5rem; display: flex; flex-direction: column"
+        ></div>
+        <div
+          class="input-container"
+          style="margin: 0.5rem; display: flex; flex-direction: column"
+        >
+          <label for="blink-before-start">blink before start</label>
+          <input type="number" id="blink-before-start" value="1500" />
+        </div>
+        <div
+          class="input-container"
+          style="margin: 0.5rem; display: flex; flex-direction: column"
+        >
+          <label for="blink-after-end">blink after end</label>
+          <input type="number" id="blink-after-end" value="1500" />
+        </div>
+        <div
+          class="input-container"
+          style="margin: 0.5rem; display: flex; flex-direction: column"
+        >
+          <label for="blink-interval">blink interval</label>
+          <input type="number" id="blink-interval" value="1000" />
+        </div>
+        <div
+          class="input-container"
+          style="margin: 0.5rem; display: flex; flex-direction: column"
+        >
+          <label for="char-interval">interval char</label>
+          <input type="text" id="char-interval" value="50" />
+        </div>
+      </div>
+
+      <button id="generate">generate</button>
+    </div>
+    <div
+      id="message-container"
+      class="black"
+      style="
+        padding: 10px;
+        border: solid black 1px;
+        min-height: 2rem;
+        min-width: 90vw;
+        margin-bottom: 10px;
+        border-color: beige;
+        border-width: 2px;
+        border-style: solid;
+        border-radius: 5px;
+      "
+    ></div>
+
+    <script
+      class="hljs-code javascript"
+      type="module"
+      style="
+        display: block;
+        white-space: pre-wrap;
+        background-color: #444654;
+        color: aliceblue;
+        border-color: beige;
+        border-width: 2px;
+        border-style: solid;
+        border-radius: 5px;
+      "
+      id="script-demo"
+    >
+
+      import {TypeItGpt} from "https://unpkg.com/typeit-gpt";
+
+      function generate() {
+        TypeItGpt.typeCursor(document.getElementById("body").value, {
+          messageContainer: document.getElementById("message-container"),
+          backgroundColor: document.getElementById("background-color").value,
+          textColor: document.getElementById("text-color").value,
+          cursorWidth: document.getElementById("cursor-width").value,
+          cursorColor: document.getElementById("text-color").value,
+          timings: {
+            blinkBeforeStart: parseInt(
+              document.getElementById("blink-before-start").value
+            ),
+            blinkAfterEnd: parseInt(
+              document.getElementById("blink-after-end").value
+            ),
+            blinkInterval: parseInt(
+              document.getElementById("blink-interval").value
+            ),
+            charInterval: parseInt(
+              document.getElementById("char-interval").value
+            ),
+          },
+        });
+      }
+
+      document.getElementById("generate").addEventListener("click", generate);
+    </script>
+  </body>
+</html>

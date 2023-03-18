@@ -1,22 +1,31 @@
 type TypeItGptOptions = {
     messageContainer?: HTMLElement | null;
+    backgroundColor?: string;
+    textColor?: string;
+    cursorColor?: string;
     timings: {
+        blinkBeforeStart?: number;
+        blinkAfterEnd?: number;
+        blinkInterval?: number;
         charInterval: number;
         waitLongerInterval: (timeBefore: number) => number;
         spaceInterval: (timeBefore: number) => number;
     };
+    cursorWidth: string;
     startEmpty?: boolean;
     waitLongerChar: Array<string>;
     shouldType: (message: string) => boolean;
-    onType?: (message: string) => void;
+    onType?: (char: string) => void;
     onEnd?: () => void;
 };
+export declare const defaultOptions: TypeItGptOptions;
 export declare class TypeItGpt {
-    private userOptions;
     stopTyping: boolean;
     options: TypeItGptOptions;
     constructor(userOptions?: {} | TypeItGptOptions);
+    private static insts;
     static typeCursor(message: string, userOptions?: TypeItGptOptions): TypeItGpt;
+    static setStopAllTyping(): void;
     /**
      * Types a message char by char
      *
@@ -31,6 +40,7 @@ export declare class TypeItGpt {
      * this is useful if a new message needs to be typed
      */
     setStopTyping(): void;
+    private setStyles;
     private recursiveTypeCursor;
     private addMessage;
     private setBlinking;

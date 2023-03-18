@@ -1,16 +1,17 @@
-#lastMessage {
-  color: white;
+.type-it-gpt {
+  color: var(--text-color, rgb(255, 255, 255));
+  font-size: var(--font-size, 1rem);
 }
-.typing::after {
-  content: '';
+.cursor::after {
+  --font-size: 1rem;
+  font-size: var(--font-size);
+  background: var(--cursor-background, rgb(255, 255, 255));
+  content: "";
   display: inline-block;
-  width: 10px;
-  height: 1em;
-  background: white;
-}
-
-.typing.blink::after {
-  animation: blink 1s step-end infinite;
+  width: var(--cursor-width, 0.75rem);
+  height: calc(var(--font-size) * 0.95);
+  position: absolute;
+  animation: blink var(--blink-interval, 1000ms) step-end infinite;
 }
 
 @keyframes blink {
