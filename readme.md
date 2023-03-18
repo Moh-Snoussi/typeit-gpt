@@ -4,7 +4,7 @@ A simple library to type a message char by char, with a blinking cursor, that lo
 
 ## Demo
 
-[https://typeit-gpt.netlify.app/](https://typeit-gpt.netlify.app/)
+[Demo](https://moh-snoussi.github.io/typeit-gpt/)
 
 ## Installation
 
