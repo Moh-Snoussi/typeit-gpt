@@ -7,7 +7,6 @@
     <title>TypeItGpt</title>
 
     <link rel="stylesheet" href="https://unpkg.com/typeit-gpt/src/index.css" />
-
   </head>
   <body>
     <style>
@@ -40,6 +39,22 @@
         padding: 1rem;
       }
 
+      button:hover {
+        background-color: #4a4a5a;
+      }
+
+      button[disabled] {
+        background-color: #343541;
+        border: none;
+        color: aliceblue;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border-radius: 0.5rem;
+        margin: 1rem;
+        padding: 1rem;
+        opacity: 0.5;
+      }
+
       body {
         background-color: #202123;
       }
@@ -47,11 +62,11 @@
 
     <div style="display: flex; align-items: center; flex-direction: column">
       <h1>TypeItGpt</h1>
-      <p>Typing cursor that looks like GPT-3 answer style</p>
+      <p>Typing cursor that looks like the chatGPT answer style</p>
 
       <p>
-        This simple light weight library allows you to add a typing cursor that
-        looks like GPT-3
+        This simple light weight library allows you to add a typing char by char
+        to a text.
       </p>
 
       <div
@@ -71,7 +86,7 @@
           style="margin: 0.5rem; display: flex; flex-direction: column"
         >
           <label for="body">body</label>
-          <textarea type="text" id="body" style="width: 90vw" rows="5">
+          <textarea type="text" id="body" style="width: 90vw" rows="3">
 If one were to question God for the problems we are facing on Earth, it is important to consider that we bear responsibility for our actions. While there is enough food to sustain all living beings on our planet, numerous factors such as poverty, inequality, conflict, and environmental degradation prevent this from being a reality. Therefore, it is incumbent upon us to take collective action towards social justice and sustainability in order to create a more equitable world for all.</textarea
           >
         </div>
@@ -132,7 +147,10 @@ If one were to question God for the problems we are facing on Earth, it is impor
         </div>
       </div>
 
-      <button id="generate">generate</button>
+      <div>
+        <button id="generate">generate</button>
+        <button id="stop">stop</button>
+      </div>
     </div>
     <div
       id="message-container"
@@ -165,16 +183,21 @@ If one were to question God for the problems we are facing on Earth, it is impor
       "
       id="script-demo"
     >
+      import { TypeItGpt } from "https://unpkg.com/typeit-gpt";
 
-      import {TypeItGpt} from "https://unpkg.com/typeit-gpt";
+      const button = document.getElementById("generate");
 
       function generate() {
+        button.setAttribute("disabled", true);
         TypeItGpt.typeCursor(document.getElementById("body").value, {
           messageContainer: document.getElementById("message-container"),
           backgroundColor: document.getElementById("background-color").value,
           textColor: document.getElementById("text-color").value,
           cursorWidth: document.getElementById("cursor-width").value,
           cursorColor: document.getElementById("text-color").value,
+          onEnd: () => {
+            button.removeAttribute("disabled");
+          },
           timings: {
             blinkBeforeStart: parseInt(
               document.getElementById("blink-before-start").value
@@ -192,7 +215,10 @@ If one were to question God for the problems we are facing on Earth, it is impor
         });
       }
 
-      document.getElementById("generate").addEventListener("click", generate);
+      button.addEventListener("click", generate);
+      document.getElementById("stop").addEventListener("click", () => {
+        TypeItGpt.setStopAllTyping();
+      });
     </script>
   </body>
 </html>

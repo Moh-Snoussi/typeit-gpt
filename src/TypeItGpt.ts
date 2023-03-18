@@ -31,7 +31,7 @@ type TypeItGptOptions = {
 
     // a callback that is called when the message is typed
     // this is useful if you want to scroll to the bottom of the message container
-    onType?: (char: string) => void;
+    onType?: (oldMessage: string, char: string) => void;
 
 
     // a callback that is called when the message is typed
@@ -63,6 +63,7 @@ export const defaultOptions: TypeItGptOptions = {
 export class TypeItGpt {
     stopTyping = false;
     options: TypeItGptOptions = defaultOptions;
+    private message: string = '';
 
     constructor(userOptions: {} | TypeItGptOptions = defaultOptions) {
         this.options = { ...defaultOptions, ...userOptions };
@@ -70,9 +71,7 @@ export class TypeItGpt {
             this.options.timings = { ...defaultOptions.timings, ...userOptions.timings };
         }
 
-        if (!this.options.messageContainer || !(this.options.messageContainer instanceof HTMLElement)) {
-            console.warn('messageContainer is not an element');
-        } else {
+        if (this.options.messageContainer instanceof HTMLElement) {
             this.setStyles();
         }
     }
@@ -107,7 +106,7 @@ export class TypeItGpt {
         this.setBlinking(true);
         this.stopTyping = false;
         if (startEmpty) {
-            this.options.messageContainer!.innerHTML = '';
+            this.clearMessage();
         }
         if (!this.options.shouldType(message)) {
             setTimeout(() => this.addMessage(message)
@@ -121,14 +120,19 @@ export class TypeItGpt {
         } else {
             setTimeout(() => {
                 if (startEmpty) {
-                    // insure that the message is empty, if needed
-                    this.options.messageContainer!.innerHTML = '';
+                    this.clearMessage();
                 }
                 this.setBlinking(true);
                 this.stopTyping = false;
                 this.recursiveTypeCursor(message, this.options.timings.charInterval, onEnd);
             },
                 this.options.timings.blinkBeforeStart || 0);
+        }
+    }
+    clearMessage() {
+        this.message = '';
+        if (this.options.messageContainer) {
+            this.options.messageContainer!.innerHTML = '';
         }
     }
 
@@ -173,7 +177,7 @@ export class TypeItGpt {
         this.addMessage(message[0]);
         message = message.slice(1);
         if (this.options.onType) {
-            this.options.onType(message[0]);
+            this.options.onType(this.message, message[0]);
         }
         setTimeout(() => {
             this.recursiveTypeCursor(message, timeoutOrigin, onEnd);
@@ -181,6 +185,7 @@ export class TypeItGpt {
     }
 
     private addMessage(message: string): void {
+        this.message += message;
         if (!this.options.messageContainer) return;
 
         this.options.messageContainer.innerHTML += message;

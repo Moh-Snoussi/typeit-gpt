@@ -1,6 +1,6 @@
 # TypeItGpt
 
-A simple library to type a message char by char, with a blinking cursor, that looks like a chatGPT answer.
+A simple library to type a message char by char, with a blinking cursor, that looks like the chatGPT answer.
 
 ## Demo
 
@@ -45,15 +45,11 @@ TypeCursor.typeCursor("Hello World", options);
 
 # options
 
-        this.options.messageContainer?.style.setProperty('--blink-interval', `${this.options.timings.blinkInterval}ms`);
-        this.options.messageContainer?.style.setProperty('--cursor-width', this.options.cursorWidth);
-        this.options.messageContainer?.style.setProperty('--cursor-color', this.options.cursorColor!);
-
 | Option                     | Type                             | Default                                                       | Description                                                                                                                               |
 | -------------------------- | -------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | messageContainer           | HTMLElement                      | document.getElementById( 'message-container' ) as HTMLElement | the element that will contain the message                                                                                                 |
 | shouldType                 | ( message: string ) => boolean   | ( message: string ) => !message.includes( '<' )               | a callback that is called on every char typed, on false the message will be added directly on true the message will be typed char by char |
-| onType                     | ( message: string ) => void      | undefined                                                     | a callback that is called after every char typed                                                                                          |
+| onType                     | (oldMessage: string, currentChar: string ) => void      | undefined                                                     | a callback that is called after every char typed                                                                                          |
 | onEnd                      | () => void                       | undefined                                                     | a callback that is called when the message is typed                                                                                       |
 | waitLongerChar             | Array<string>                    | [ ',', '.', '?' ]                                             | if the first char is currently typed, add a longer timeout                                                                                |
 | timings.charInterval       | number                           | 50                                                            | the time between each char typed                                                                                                          |
