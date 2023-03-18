@@ -11,10 +11,10 @@
   width: var(--cursor-width, 0.75rem);
   height: calc(var(--font-size) * 0.95);
   position: absolute;
-  animation: blink var(--blink-interval, 1000ms) step-end infinite;
+  animation: type-it-gpt-blink var(--blink-interval, 1000ms) step-end infinite;
 }
 
-@keyframes blink {
+@keyframes type-it-gpt-blink {
   50% {
     opacity: 0;
   }
