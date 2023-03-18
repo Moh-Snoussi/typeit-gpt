@@ -161,7 +161,7 @@ export class TypeItGpt {
             setTimeout(() => {
                 this.setBlinking(false);
                 onEnd();
-            }, this.options.timings.blinkAfterEnd || 0);
+            }, this.stopTyping? 0 : this.options.timings.blinkAfterEnd || 0);
             return;
         }
         let timeout = timeoutOrigin;
@@ -181,7 +181,7 @@ export class TypeItGpt {
         }
         setTimeout(() => {
             this.recursiveTypeCursor(message, timeoutOrigin, onEnd);
-        }, timeout);
+        }, this.stopTyping ? 1 : timeout);
     }
 
     private addMessage(message: string): void {
