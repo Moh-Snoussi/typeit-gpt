@@ -99,22 +99,6 @@ If one were to question God for the problems we are facing on Earth, it is impor
           class="input-container"
           style="margin: 0.5rem; display: flex; flex-direction: column"
         >
-          <label for="background-color">background-color</label>
-          <input type="text" id="background-color" value="#343541" />
-        </div>
-
-        <div
-          class="input-container"
-          style="margin: 0.5rem; display: flex; flex-direction: column"
-        >
-          <label for="text-color">text-color</label>
-          <input type="text" id="text-color" value="white" />
-        </div>
-
-        <div
-          class="input-container"
-          style="margin: 0.5rem; display: flex; flex-direction: column"
-        >
           <label for="cursor-width">cursor width</label>
           <input type="text" id="cursor-width" value="0.75rem" />
         </div>
@@ -188,7 +172,7 @@ If one were to question God for the problems we are facing on Earth, it is impor
       "
       id="script-demo"
     >
-      import { TypeItGpt } from "https://unpkg.com/typeit-gpt";
+      import { TypeItGpt } from "./../lib/TypeItGpt.js";
 
       const button = document.getElementById("generate");
 
@@ -196,8 +180,6 @@ If one were to question God for the problems we are facing on Earth, it is impor
         button.setAttribute("disabled", true);
         TypeItGpt.typeCursor(document.getElementById("body").value, {
           messageContainer: document.getElementById("message-container"),
-          backgroundColor: document.getElementById("background-color").value,
-          textColor: document.getElementById("text-color").value,
           cursorWidth: document.getElementById("cursor-width").value,
           cursorColor: document.getElementById("text-color").value,
           onEnd: () => {

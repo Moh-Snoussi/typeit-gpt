@@ -3,10 +3,6 @@ type TypeItGptOptions = {
     // default is document.getElementById( 'message-container' ) as HTMLElement
     messageContainer?: HTMLElement | null;
 
-    backgroundColor?: string;
-
-    textColor?: string;
-
     cursorColor?: string;
 
     timings: {
@@ -22,7 +18,6 @@ type TypeItGptOptions = {
 
     startEmpty?: boolean;
 
-
     waitLongerChar: Array<string>;
 
     // a callback that is called on every char typed, on false the message will be added directly
@@ -33,7 +28,6 @@ type TypeItGptOptions = {
     // this is useful if you want to scroll to the bottom of the message container
     onType?: (oldMessage: string, char: string) => void;
 
-
     // a callback that is called when the message is typed
     onEnd?: () => void;
 
@@ -43,9 +37,7 @@ type TypeItGptOptions = {
 export const defaultOptions: TypeItGptOptions = {
     messageContainer: document.getElementById('message-container') as HTMLElement,
     shouldType: (message: string) => !message.includes('<'),
-    backgroundColor: '',
     waitLongerChar: [',', '.', '?'],
-    textColor: 'white',
     cursorWidth: '0.75rem',
     cursorColor: 'white',
     timings: {
@@ -152,10 +144,6 @@ export class TypeItGpt {
         this.options.messageContainer?.style.setProperty('--type-it-gpt-blink-interval', `${this.options.timings.blinkInterval}ms`);
         this.options.messageContainer?.style.setProperty('--type-it-gpt-cursor-width', this.options.cursorWidth);
         this.options.messageContainer?.style.setProperty('--type-it-gpt-cursor-color', this.options.cursorColor!);
-        this.options.messageContainer?.style.setProperty('--type-it-gpt-text-color', this.options.textColor!);
-        if (this.options.backgroundColor !== '') {
-            this.options.messageContainer?.style.setProperty('--type-it-gpt-background-color', this.options.backgroundColor!);
-        }
         this.options.messageContainer!.classList.add('type-it-gpt');
     }
 

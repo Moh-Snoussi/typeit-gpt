@@ -1,10 +1,4 @@
-  .type-it-gpt {
-  color: var(--type-it-gpt-text-color, rgb(255, 255, 255));
-  font-size: var(--type-it-gpt-font-size, 1rem);
-}
 .type-it-gpt.cursor::after {
-  --type-it-gpt-font-size: 1rem;
-  font-size: var(--type-it-gpt-font-size);
   background: var(--type-it-gpt-cursor-background, rgb(255, 255, 255));
   content: "";
   display: inline-block;
@@ -15,7 +9,6 @@
 }
 
 :root{
-  --type-it-gpt-text-color: #fff;
   --type-it-gpt-cursor-background: #fff;
   --type-it-gpt-cursor-width: 0.75rem;
   --type-it-gpt-blink-interval: 1000ms;

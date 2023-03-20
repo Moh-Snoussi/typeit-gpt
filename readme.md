@@ -57,9 +57,7 @@ TypeCursor.typeCursor("Hello World", options);
 | timings.spaceInterval      | ( timeBefore: number ) => number | ( timeBefore: number ) => Math.random() _ 5 _ timeBefore      | the time between each char typed                                                                                                          |
 | startEmpty                 | boolean                          | true                                                          | if the message should start empty, or append to the previous message                                                                      |
 | cursorWidth                | string                           | '1rem'                                                        | the width of the cursor                                                                                                                   |
-| textColor                  | string                           | 'white'                                                       | the font color                                                                                                                            |
 | cursorColor                | string                           | 'white'                                                       | the color of the cursor                                                                                                                   |
-| backgroundColor            | string                           | '#343541'                                                     | the background color of the message container                                                                                             |
 | removeClassAfterEnd        | boolean                           | false                                                  | if the type-it-gpt class should be removed from the message after the typing is done                                                        |
 
 # methods

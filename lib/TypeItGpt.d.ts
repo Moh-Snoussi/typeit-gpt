@@ -1,7 +1,5 @@
 type TypeItGptOptions = {
     messageContainer?: HTMLElement | null;
-    backgroundColor?: string;
-    textColor?: string;
     cursorColor?: string;
     timings: {
         blinkBeforeStart?: number;
