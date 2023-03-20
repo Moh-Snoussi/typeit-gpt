@@ -62,11 +62,14 @@
 
     <div style="display: flex; align-items: center; flex-direction: column">
       <h1>TypeItGpt</h1>
-      	<div class="github">
-		<a href="https://github.com/Moh-Snoussi/typeit-gpt">
-			<img src="https://img.shields.io/github/stars/Moh-Snoussi/typeit-gpt?style=social" alt="GitHub stars">
-		</a>
-	</div>
+      <div class="github">
+        <a href="https://github.com/Moh-Snoussi/typeit-gpt">
+          <img
+            src="https://img.shields.io/github/stars/Moh-Snoussi/typeit-gpt?style=social"
+            alt="GitHub stars"
+          />
+        </a>
+      </div>
       <p>Typing cursor that looks like the chatGPT answer style</p>
 
       <p>
@@ -95,6 +98,15 @@
 If one were to question God for the problems we are facing on Earth, it is important to consider that we bear responsibility for our actions. While there is enough food to sustain all living beings on our planet, numerous factors such as poverty, inequality, conflict, and environmental degradation prevent this from being a reality. Therefore, it is incumbent upon us to take collective action towards social justice and sustainability in order to create a more equitable world for all.</textarea
           >
         </div>
+
+        <div
+          class="input-container"
+          style="margin: 0.5rem; display: flex; flex-direction: column"
+        >
+          <label for="cursor-color">cursor-color</label>
+          <input type="text" id="cursor-color" value="white" />
+        </div>
+
         <div
           class="input-container"
           style="margin: 0.5rem; display: flex; flex-direction: column"
@@ -172,7 +184,7 @@ If one were to question God for the problems we are facing on Earth, it is impor
       "
       id="script-demo"
     >
-      import { TypeItGpt } from "./../lib/TypeItGpt.js";
+      import TypeItGpt from "https://cdn.skypack.dev/typeit-gpt";
 
       const button = document.getElementById("generate");
 
@@ -181,7 +193,7 @@ If one were to question God for the problems we are facing on Earth, it is impor
         TypeItGpt.typeCursor(document.getElementById("body").value, {
           messageContainer: document.getElementById("message-container"),
           cursorWidth: document.getElementById("cursor-width").value,
-          cursorColor: document.getElementById("text-color").value,
+          cursorColor: document.getElementById("cursor-color").value,
           onEnd: () => {
             button.removeAttribute("disabled");
           },
