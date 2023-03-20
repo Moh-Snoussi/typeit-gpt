@@ -17,6 +17,7 @@ type TypeItGptOptions = {
     shouldType: (message: string) => boolean;
     onType?: (oldMessage: string, char: string) => void;
     onEnd?: () => void;
+    removeClassAfterEnd?: boolean;
 };
 export declare const defaultOptions: TypeItGptOptions;
 export declare class TypeItGpt {

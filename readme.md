@@ -60,6 +60,7 @@ TypeCursor.typeCursor("Hello World", options);
 | textColor                  | string                           | 'white'                                                       | the font color                                                                                                                            |
 | cursorColor                | string                           | 'white'                                                       | the color of the cursor                                                                                                                   |
 | backgroundColor            | string                           | '#343541'                                                     | the background color of the message container                                                                                             |
+| removeClassAfterEnd        | boolean                           | false                                                  | if the type-it-gpt class should be removed from the message after the typing is done                                                        |
 
 # methods
 

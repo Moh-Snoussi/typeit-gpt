@@ -36,15 +36,17 @@ type TypeItGptOptions = {
 
     // a callback that is called when the message is typed
     onEnd?: () => void;
+
+    removeClassAfterEnd?: boolean;
 }
 
 export const defaultOptions: TypeItGptOptions = {
     messageContainer: document.getElementById('message-container') as HTMLElement,
     shouldType: (message: string) => !message.includes('<'),
-    backgroundColor: '#343541',
+    backgroundColor: '',
     waitLongerChar: [',', '.', '?'],
     textColor: 'white',
-    cursorWidth: '0.75',
+    cursorWidth: '0.75rem',
     cursorColor: 'white',
     timings: {
         blinkBeforeStart: 1500,
@@ -58,6 +60,7 @@ export const defaultOptions: TypeItGptOptions = {
         spaceInterval: (timeBefore) => Math.random() * 5 * timeBefore,
     },
     startEmpty: true,
+    removeClassAfterEnd: false,
 };
 
 export class TypeItGpt {
@@ -146,11 +149,13 @@ export class TypeItGpt {
 
 
     private setStyles() {
-        this.options.messageContainer?.style.setProperty('--blink-interval', `${this.options.timings.blinkInterval}ms`);
-        this.options.messageContainer?.style.setProperty('--cursor-width', this.options.cursorWidth);
-        this.options.messageContainer?.style.setProperty('--cursor-color', this.options.cursorColor!);
-        this.options.messageContainer?.style.setProperty('--text-color', this.options.textColor!);
-        this.options.messageContainer!.style.backgroundColor = this.options.backgroundColor!;
+        this.options.messageContainer?.style.setProperty('--type-it-gpt-blink-interval', `${this.options.timings.blinkInterval}ms`);
+        this.options.messageContainer?.style.setProperty('--type-it-gpt-cursor-width', this.options.cursorWidth);
+        this.options.messageContainer?.style.setProperty('--type-it-gpt-cursor-color', this.options.cursorColor!);
+        this.options.messageContainer?.style.setProperty('--type-it-gpt-text-color', this.options.textColor!);
+        if (this.options.backgroundColor !== '') {
+            this.options.messageContainer?.style.setProperty('--type-it-gpt-background-color', this.options.backgroundColor!);
+        }
         this.options.messageContainer!.classList.add('type-it-gpt');
     }
 
@@ -161,6 +166,9 @@ export class TypeItGpt {
             setTimeout(() => {
                 this.setBlinking(false);
                 onEnd();
+                if (this.options.removeClassAfterEnd) {
+                    this.options.messageContainer?.classList.remove('type-it-gpt');
+                }
             }, this.stopTyping? 0 : this.options.timings.blinkAfterEnd || 0);
             return;
         }

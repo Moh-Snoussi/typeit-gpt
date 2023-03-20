@@ -1,17 +1,25 @@
-.type-it-gpt {
-  color: var(--text-color, rgb(255, 255, 255));
-  font-size: var(--font-size, 1rem);
+  .type-it-gpt {
+  color: var(--type-it-gpt-text-color, rgb(255, 255, 255));
+  font-size: var(--type-it-gpt-font-size, 1rem);
 }
-.cursor::after {
-  --font-size: 1rem;
-  font-size: var(--font-size);
-  background: var(--cursor-background, rgb(255, 255, 255));
+.type-it-gpt.cursor::after {
+  --type-it-gpt-font-size: 1rem;
+  font-size: var(--type-it-gpt-font-size);
+  background: var(--type-it-gpt-cursor-background, rgb(255, 255, 255));
   content: "";
   display: inline-block;
-  width: var(--cursor-width, 0.75rem);
-  height: calc(var(--font-size) * 0.95);
+  width: var(--type-it-gpt-cursor-width, 0.75rem);
+  height: calc(var(--type-it-gpt-font-size) * 0.95);
   position: absolute;
-  animation: type-it-gpt-blink var(--blink-interval, 1000ms) step-end infinite;
+  animation: type-it-gpt-blink var(--type-it-gpt-blink-interval, 1000ms) step-end infinite;
+}
+
+:root{
+  --type-it-gpt-text-color: #fff;
+  --type-it-gpt-cursor-background: #fff;
+  --type-it-gpt-cursor-width: 0.75rem;
+  --type-it-gpt-blink-interval: 1000ms;
+  --type-it-gpt-font-size: 1rem;
 }
 
 @keyframes type-it-gpt-blink {
